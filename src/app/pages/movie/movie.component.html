@@ -1,10 +1,14 @@
-<div class="movie-info" *ngIf="movieInfo">
+<div class="movie-info" *ngIf="movieInfo && key">
   <div class="backdrop">
     <img
       src="https://image.tmdb.org/t/p/w1280{{ movieInfo.backdrop_path }}"
       alt="{{ movieInfo.title }}"
       class="backdrop-image"
     />
+    <video width="320" height="240" controls>
+      <source src="https://www.youtube.com/watch?v={{key}}" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
     <div class="title-poster">
       <img
         src="https://image.tmdb.org/t/p/w342{{ movieInfo.poster_path }}"

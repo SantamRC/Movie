@@ -9,25 +9,26 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: ['./movie.component.scss'],
 })
 export class MovieComponent implements OnInit {
-  movieId: string = '';
+  movieId: any;
   movieInfo: any;
   movieCast: any[] | undefined = [];
   uid: string = '';
+  key: string | undefined = '';
   constructor(
     private route: ActivatedRoute,
     public movieService: MovieService
   ) {}
 
   ngOnInit() {
-    this.movieId = this.route.snapshot.params.id;
-
+    this.movieId = this.route.snapshot.params;
+    this.getTrailer();
     this.getMovieDetails();
     this.getMovieCast();
   }
 
   getMovieDetails() {
     this.movieService.mdb
-      .movieInfo({ id: this.movieId })
+      .movieInfo({ id: this.movieId['id'] })
       .then((response) => {
         this.movieInfo = response;
       })
@@ -45,5 +46,14 @@ export class MovieComponent implements OnInit {
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  getTrailer() {
+    this.movieService.mdb.movieVideos({ id: '335787' }).then((response) => {
+      if (response.results) {
+        console.log(response.results[0]);
+        this.key = response.results[0].key;
+      }
+    });
   }
 }

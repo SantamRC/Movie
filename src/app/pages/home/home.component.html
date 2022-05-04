@@ -9,7 +9,6 @@
   <div
     class="movie-container"
     *ngFor="let movie of movies"
-    [routerLink]="['/movie', movie.id]"
     (click)="openPopup(movie)"
   >
     <img
