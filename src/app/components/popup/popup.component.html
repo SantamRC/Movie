@@ -1,2 +1,2 @@
 <h3>{{movie.movieObject.original_title}}</h3>
-<button [routerLink]="['/movie', movie.movieObject.id]" mat-raised-button color="accent">Details</button>
+<button [routerLink]="['/movie', movie.movieObject.id]" (click)="details()" mat-raised-button color="accent">Details</button>
