@@ -16,7 +16,7 @@ export class MovieComponent implements OnInit {
   key: string | undefined = '';
   constructor(
     private route: ActivatedRoute,
-    public movieService: MovieService
+    public movieService: MovieService,
   ) {}
 
   ngOnInit() {
@@ -56,4 +56,6 @@ export class MovieComponent implements OnInit {
       }
     });
   }
+
+  
 }

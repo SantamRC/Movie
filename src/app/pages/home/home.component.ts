@@ -11,7 +11,12 @@ import { PopupComponent } from '../../components/popup/popup.component';
 export class HomeComponent implements OnInit {
   movies: any[] | undefined;
   page = 1;
-  constructor(public movieService: MovieService, public dialog: MatDialog) {}
+
+  constructor(
+    public movieService: MovieService,
+    public dialog: MatDialog,
+    //public transfer: TransferService
+  ) {}
 
   ngOnInit(): void {
     this.discoverMovies(this.page);
@@ -30,9 +35,6 @@ export class HomeComponent implements OnInit {
         if (response.page == 1) {
           this.movies = response.results;
         }
-        // else {
-        //   this.movies = [...this.movies, response.results];
-        // }
         console.log(response.results);
       })
       .catch((error) => {
@@ -45,10 +47,15 @@ export class HomeComponent implements OnInit {
   }
 
   openPopup(movie: any) {
-    const dialogRef = this.dialog.open(PopupComponent);
+    const dialogRef = this.dialog.open(PopupComponent, {
+      data: {
+        movieObject: movie,
+      },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
+
 }

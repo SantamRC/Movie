@@ -1,2 +1,2 @@
-<p>popup works!</p>
-<button [routerLink]="['/movie', '335787']" mat-raised-button color="accent">Details</button>
+<h3>{{movie.movieObject.original_title}}</h3>
+<button [routerLink]="['/movie', movie.movieObject.id]" mat-raised-button color="accent">Details</button>
