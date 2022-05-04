@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../../components/popup/popup.component';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class HomeComponent implements OnInit {
   movies: any[] | undefined;
   page = 1;
-  constructor(public movieService: MovieService) {}
+  constructor(public movieService: MovieService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.discoverMovies(this.page);
@@ -27,7 +29,7 @@ export class HomeComponent implements OnInit {
       .then((response) => {
         if (response.page == 1) {
           this.movies = response.results;
-        } 
+        }
         // else {
         //   this.movies = [...this.movies, response.results];
         // }
@@ -40,5 +42,13 @@ export class HomeComponent implements OnInit {
 
   stringToDate(date: string): Date {
     return new Date(date);
+  }
+
+  openPopup(movie: any) {
+    const dialogRef = this.dialog.open(PopupComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
