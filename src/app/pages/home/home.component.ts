@@ -7,7 +7,7 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  movies: any[] = [];
+  movies: any[] | undefined;
   page = 1;
   constructor(public movieService: MovieService) {}
 
@@ -25,9 +25,10 @@ export class HomeComponent implements OnInit {
         language: 'en-US',
       })
       .then((response) => {
-        // if (response.page == 1) {
-        //   this.movies = response.results;
-        // } else {
+        if (response.page == 1) {
+          this.movies = response.results;
+        } 
+        // else {
         //   this.movies = [...this.movies, response.results];
         // }
         console.log(response.results);

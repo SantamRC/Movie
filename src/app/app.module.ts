@@ -7,18 +7,19 @@ import { HomeComponent } from './pages/home/home.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    MovieComponent
-  ],
+  declarations: [AppComponent, HomeComponent, MovieComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
