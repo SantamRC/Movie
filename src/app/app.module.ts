@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './components/popup/popup.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, MovieComponent, PopupComponent],
@@ -23,6 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
+    MatChipsModule,
+    MatListModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
