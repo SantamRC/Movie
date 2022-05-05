@@ -5,10 +5,6 @@
       alt="{{ movieInfo.title }}"
       class="backdrop-image"
     />
-    <video width="320" height="240" controls>
-      <source src="https://www.youtube.com/watch?v={{key}}" type="video/mp4">
-    Your browser does not support the video tag.
-    </video>
     <div class="title-poster">
       <img
         src="https://image.tmdb.org/t/p/w342{{ movieInfo.poster_path }}"
@@ -27,6 +23,7 @@
       </div>
     </div>
   </div>
+  
   <div class="info">
     <mat-chip-list>
       <mat-chip *ngFor="let genre of movieInfo.genres">{{
@@ -36,6 +33,14 @@
         company.name
       }}</mat-chip>
     </mat-chip-list>
+    <youtube-player 
+  id="yt-player"
+  videoId={{key}}
+  [playerVars]="playerConfig"
+  suggestedQuality="highres"
+  [height]="500"
+  [width]="1000" >
+</youtube-player>
     <div class="overview">
       <p>{{ movieInfo.overview }}</p>
     </div>

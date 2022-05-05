@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -14,9 +13,16 @@ export class MovieComponent implements OnInit {
   movieCast: any[] | undefined = [];
   uid: string = '';
   key: string | undefined = '';
+
+  playerConfig = {
+    controls: 0,
+    mute: 1,
+    autoplay: 1,
+  };
+
   constructor(
     private route: ActivatedRoute,
-    public movieService: MovieService,
+    public movieService: MovieService
   ) {}
 
   ngOnInit() {
@@ -39,9 +45,10 @@ export class MovieComponent implements OnInit {
 
   getMovieCast() {
     this.movieService.mdb
-      .movieCredits({ id: this.movieId })
+      .movieCredits({ id: this.movieId['id'] })
       .then((response) => {
         this.movieCast = response.cast;
+        console.log(response);
       })
       .catch((error) => {
         console.error(error);
@@ -49,13 +56,13 @@ export class MovieComponent implements OnInit {
   }
 
   getTrailer() {
-    this.movieService.mdb.movieVideos({ id: '335787' }).then((response) => {
-      if (response.results) {
-        console.log(response.results[0]);
-        this.key = response.results[0].key;
-      }
-    });
+    this.movieService.mdb
+      .movieVideos({ id: this.movieId['id'] })
+      .then((response) => {
+        if (response.results) {
+          console.log(response.results[0]);
+          this.key = response.results[0].key;
+        }
+      });
   }
-
-  
 }
