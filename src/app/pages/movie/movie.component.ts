@@ -37,6 +37,7 @@ export class MovieComponent implements OnInit {
       .movieInfo({ id: this.movieId['id'] })
       .then((response) => {
         this.movieInfo = response;
+        console.log(this.movieInfo.genres);
       })
       .catch((error) => {
         console.error(error);
@@ -48,7 +49,7 @@ export class MovieComponent implements OnInit {
       .movieCredits({ id: this.movieId['id'] })
       .then((response) => {
         this.movieCast = response.cast;
-        console.log(response);
+        //console.log(response);
       })
       .catch((error) => {
         console.error(error);
@@ -60,7 +61,7 @@ export class MovieComponent implements OnInit {
       .movieVideos({ id: this.movieId['id'] })
       .then((response) => {
         if (response.results) {
-          console.log(response.results[0]);
+          //console.log(response.results[0]);
           this.key = response.results[0].key;
         }
       });

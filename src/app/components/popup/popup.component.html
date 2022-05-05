@@ -1,2 +1,21 @@
-<h3>{{movie.movieObject.original_title}}</h3>
-<button [routerLink]="['/movie', movie.movieObject.id]" (click)="details()" mat-raised-button color="accent">Details</button>
+<h1>{{movie.movieObject.original_title}}</h1>
+<div class="info">
+    <img
+    src="https://image.tmdb.org/t/p/w342{{ movie.movieObject.poster_path }}"
+    alt="{{ movie.movieObject.title }}"
+  />
+  <div id="info-right">
+   <h2>Genres</h2>
+    <mat-chip-list>
+        <mat-chip *ngFor="let genre of movieInfo.genres">{{
+          genre.name
+        }}</mat-chip>
+        <mat-chip *ngFor="let company of movieInfo.production_companies">{{
+          company.name
+        }}</mat-chip>
+      </mat-chip-list>
+      <p id="info-right-text">{{movie.movieObject.overview}}</p>
+      <h3><span [ngStyle]="{fontWeight: 'bold'}">Release Date: </span> {{movieInfo.release_date}}</h3>
+  </div>
+</div>
+<button id="details" [routerLink]="['/movie', movie.movieObject.id]" (click)="details()" mat-raised-button color="accent">Details</button>
